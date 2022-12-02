@@ -1,7 +1,15 @@
-def max_elf(elves: list[list[int]]) -> int:
-    return max([sum(elf) for elf in elves])
+def sum_invs(invs: list[list[int]]) -> list[int]:
+    return [sum(inv) for inv in invs]
 
-if __name__ == "__main__":
+def max_elf(elves: list[list[int]]) -> int:
+    return max(sum_invs(elves))
+
+def max_n_elves(elves: list[list[int]], n:int):
+    invs = sum_invs(elves)
+    return sum([invs.pop(invs.index(max(invs))) for _ in range(n)])
+    
+
+def get_input():
     elves = []
     tmp = []
     with open ("input-01", "r") as f:
@@ -11,6 +19,12 @@ if __name__ == "__main__":
             else:
                 elves.append(tmp)
                 tmp = []
-    print(max_elf(elves))
+    return elves
+
+if __name__ == "__main__":
+    elves = get_input()
+    print(f"Part 1:\n  Max: {max_elf(elves)}")
+    print(f"Part 2:\n  Max3: {max_n_elves(elves, 3)}")
+    
 
     
