@@ -15,7 +15,7 @@ def get_input():
     with open ("inputs/input-01.txt", "r") as f:
         lines = f.readlines()
     while len(lines):
-        tmp = list(map(lambda x: int(x),list(takewhile(lambda x : x!="\n", lines))))
+        tmp = list(map(int,list(takewhile(lambda x : x!="\n", lines))))
         elves += [tmp]
         lines = lines[len(tmp)+1:]
     return elves
